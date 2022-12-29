@@ -1,0 +1,123 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+    font-family: montserrat, arial, verdana;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    margin-top: 50px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+    align-items: center;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+}
+
+.header {
+    font-size: xx-large;
+    font-weight: 900;
+}
+
+input {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 13px;
+    text-align: center;
+}
+
+::placeholder {
+    text-align: center;
+}
+
+
+.input-area {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    min-width: 400px;
+}
+
+button {
+    background-color: black;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 16px;
+    font-weight: 500;
+    height: 45px;
+    padding: 0 1.6rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    transition: all .5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+button:hover {
+    background-image: linear-gradient(to bottom right, #58e85d, #32aa2a, #0fb127);
+    box-shadow: rgba(1, 238, 29, 0.5) 0 1px 30px;
+    transition-duration: .1s;
+}
+
+@media (min-width: 768px) {
+    button {
+        padding: 0 2.6rem;
+    }
+}
+
+
+.teamCount {
+    display: flex;
+    width: 100%;
+    vertical-align: middle;
+    justify-content: space-between;
+}
+
+.fullName {
+    display: flex;
+    width: 100%;
+    vertical-align: middle;
+    justify-content: space-between;
+}
+
+
+.name-table {
+    margin-top: 20px;
+    min-width: 400px;
+    max-height: 500px;
+    overflow: scroll;
+}
+
+.name-table::-webkit-scrollbar {
+    display: none;
+}
+
+.name-table {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.bottom {
+    margin-top: 20px;
+    min-width: 400px;
+    display: flex;
+    justify-content: space-between;
+}

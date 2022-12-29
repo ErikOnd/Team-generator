@@ -15,7 +15,6 @@ body {
 .content {
     display: flex;
     flex-direction: column;
-    min-height: 600px;
     align-items: center;
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

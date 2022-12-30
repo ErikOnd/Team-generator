@@ -60,7 +60,7 @@ button {
     flex-shrink: 0;
     font-size: 16px;
     font-weight: 500;
-    height: 45px;
+    height: 48.5px;
     padding: 0 1.6rem;
     text-align: center;
     text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
@@ -86,7 +86,6 @@ button:hover {
 .teamCount {
     display: flex;
     width: 100%;
-    vertical-align: middle;
     justify-content: space-between;
 }
 
@@ -119,4 +118,33 @@ button:hover {
     min-width: 400px;
     display: flex;
     justify-content: space-between;
+}
+
+.student-tables {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lower.content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 40px;
+    margin-bottom: 40px;
+    white-space: nowrap;
+}
+
+.group-number {
+    font-weight: 600;
+    font-size: x-large;
+    margin-bottom: 20px;
+}
+
+.student-bubble {
+    border: 1px solid lightseagreen;
+    border-radius: 40px;
+    padding: 10px 20px;
+    background-color: lightseagreen;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
 }

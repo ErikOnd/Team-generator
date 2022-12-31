@@ -2,7 +2,7 @@ let addStudentBtn = document.getElementById('addStudent');
 let createTeamsBtn = document.getElementById('createTeams');
 let table = document.getElementsByTagName('tbody')[0];
 let studentInputField = document.getElementById('studnetName');
-let studentTables = document.getElementsByClassName('student-tables')[0];
+let generatedTables = document.getElementsByClassName('generated-tables')[0];
 let studentArr = [];
 
 
@@ -39,33 +39,18 @@ function addStundent() {
 
 function createTeams() {
     let numberOfTeams = document.getElementById('teamCount')
-    let teamsize = studentArr.length % numberOfTeams.value;
-    let assignedStudents = [];
+    let studentTables = document.createElement('div');
+    studentTables.classList.add('student-tables');
+    generatedTables.appendChild(studentTables);
     for (let i = 0; i < numberOfTeams.value; i++) {
-        console.log(i)
         let studentGroup = document.createElement('div');
         studentGroup.classList.add('lower', 'content');
-
+        studentTables.appendChild(studentGroup);
         let groupHeader = document.createElement('div');
         groupHeader.innerHTML = i + 1;
         groupHeader.classList.add('group-number');
         studentGroup.appendChild(groupHeader);
-        for (j = 0; j < teamsize; j++) {
-            let randomStudent = studentArr[Math.floor(Math.random() * studentArr.length)]
-            while (assignedStudents.includes(randomStudent)) {
-                randomStudent = studentArr[Math.floor(Math.random() * studentArr.length)]
-            }
-            let student = document.createElement('div');
-            student.classList.add('student-bubble');
-            student.innerText = randomStudent;
-            studentGroup.appendChild(student);
-            assignedStudents.push(randomStudent);
-        }
-        //remaining students?
-
-        studentTables.appendChild(studentGroup);
     }
-    assignedStudents = [];
 }
 
 

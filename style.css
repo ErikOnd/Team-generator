@@ -8,8 +8,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 800px;
-    margin-top: 50px;
+    margin-top: 4%;
+    padding-inline: 100px;
 }
 
 .content {
@@ -19,6 +19,7 @@ body {
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 20px;
+    max-height: 87vh;
 }
 
 .header {
@@ -102,15 +103,12 @@ button:hover {
     min-width: 400px;
     max-height: 500px;
     overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .name-table::-webkit-scrollbar {
     display: none;
-}
-
-.name-table {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 .bottom {
@@ -120,9 +118,24 @@ button:hover {
     justify-content: space-between;
 }
 
+.generated-tables {
+    display: flex;
+    align-content: center;
+}
+
 .student-tables {
+    padding-top: 15px;
     display: flex;
     flex-wrap: wrap;
+    width: 60vw;
+    max-height: 87vh;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.student-tables::-webkit-scrollbar {
+    display: none;
 }
 
 .lower.content {
@@ -132,6 +145,7 @@ button:hover {
     margin-left: 40px;
     margin-bottom: 40px;
     white-space: nowrap;
+    width: 25%;
 }
 
 .group-number {

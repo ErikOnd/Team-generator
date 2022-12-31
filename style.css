@@ -162,3 +162,20 @@ button:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     cursor: pointer;
 }
+
+@media (max-width: 1150px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .student-tables {
+        gap: 20px;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .lower.content {
+        display: flex;
+        margin-left: 0px;
+    }
+}

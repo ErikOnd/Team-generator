@@ -5,6 +5,7 @@ let studentInputField = document.getElementById('studnetName');
 let generatedTables = document.getElementsByClassName('generated-tables')[0];
 let numberOfTeams = document.getElementById('teamCount');
 let addRandomBtn = document.getElementById('addRandom');
+let addAllBtn = document.getElementById('addAll');
 let studentArr = [];
 let selectedStudentsArr = [];
 let counter = 0;
@@ -28,24 +29,50 @@ addRandomBtn.addEventListener('click', function () {
     addRandom()
 })
 
+addAllBtn.addEventListener('click', function () {
+    addAll()
+})
+
 function addRandom() {
-    let student = studentArr[Math.floor(Math.random() * studentArr.length)];
     if (studentArr.length !== selectedStudentsArr.length) {
+        let student = studentArr[Math.floor(Math.random() * studentArr.length)];
         while (selectedStudentsArr.includes(student)) {
             student = studentArr[Math.floor(Math.random() * studentArr.length)];
         }
         selectedStudentsArr.push(student);
         let wListStudent = document.getElementById(`tableRow${student.id}`);
         wListStudent.remove();
-        let teamNumber = Math.floor(Math.random() * numberOfTeams.value);
         let studentNode = document.createElement('div');
         studentNode.classList.add('student-bubble');
         studentNode.innerText = student.name;
-        console.log(teamNumber)
-        let studentTable = document.getElementsByClassName('lower')[teamNumber];
-        studentTable.appendChild(studentNode);
+        addStudentToTable(studentNode)
     }
 }
+
+function addAll() {
+    console.log('test')
+    for (let i = 0; i < studentArr.length; i++) {
+        addRandom()
+    }
+}
+
+
+
+function addStudentToTable(studentNode) {
+    const maxSize = Math.ceil(studentArr.length / numberOfTeams.value);
+    let teamNumber = Math.floor(Math.random() * numberOfTeams.value);
+    let studentTable = document.getElementsByClassName('lower')[teamNumber];
+    let teamSize = studentTable.childElementCount;
+    console.log(maxSize, teamSize);
+    while (maxSize < teamSize) {
+        teamNumber = Math.floor(Math.random() * numberOfTeams.value);
+        studentTable = document.getElementsByClassName('lower')[teamNumber];
+        teamSize = studentTable.childElementCount;
+    }
+
+    studentTable.appendChild(studentNode);
+}
+
 function addStundent() {
     let studentName = document.getElementById('studnetName');
     if (studentName.value) {
@@ -104,29 +131,3 @@ function createTeams() {
 
 
 //double click can edit student 
-
-
-/*
-
-studentArr = [
-    {
-        index: 0,
-        name: 'erik ondra',
-        group: '3',
-    },
-
-    {
-        index: 1,
-        name: 'peter paker',
-        group: '3',
-    },
-
-    {
-        index: 2,
-        name: 'shawn mendas',
-        group: '3',
-    },
-
-    ]
-
-*/

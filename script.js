@@ -1,6 +1,7 @@
 let addStudentBtn = document.getElementById('addStudent');
 let createTeamsBtn = document.getElementById('createTeams');
 let table = document.getElementsByTagName('tbody')[0];
+let studentName = document.getElementById('studnetName');
 let studentInputField = document.getElementById('studnetName');
 let generatedTables = document.getElementsByClassName('generated-tables')[0];
 let numberOfTeams = document.getElementById('teamCount');
@@ -43,7 +44,15 @@ function addRandom() {
         let wListStudent = document.getElementById(`tableRow${student.id}`);
         wListStudent.remove();
         let studentNode = document.createElement('div');
+        studentNode.addEventListener('dblclick', function (event) {
+            let student = this;
+            console.log(this)
+
+            addStundent(student);
+            this.remove();
+        })
         studentNode.classList.add('student-bubble');
+        studentNode.id = student.id;
         studentNode.innerText = student.name;
         addStudentToTable(studentNode)
     }
@@ -73,9 +82,23 @@ function addStudentToTable(studentNode) {
     studentTable.appendChild(studentNode);
 }
 
-function addStundent() {
-    let studentName = document.getElementById('studnetName');
-    if (studentName.value) {
+function addStundent(studentBubbleName) {
+    if (studentBubbleName) {
+        let tableRow = document.createElement('tr')
+        tableRow.innerHTML = `<td>${studentBubbleName.innerText}</td>`;
+        tableRow.id = `tableRow${studentBubbleName.id}`
+        tableRow.addEventListener('dblclick', function (event) {
+            studentName.value = event.target.innerText;
+            studentName.focus();
+            studentName.select();
+            this.remove();
+            reassignIds();
+            counter--;
+        })
+        table.appendChild(tableRow)
+        studentName.value = null;
+    }
+    else if (studentName.value) {
         studentArr.push({
             id: counter,
             name: studentName.value,
@@ -85,11 +108,24 @@ function addStundent() {
         tableRow.innerHTML = `<td>${studentName.value}</td>`;
         tableRow.id = `tableRow${counter}`
         tableRow.addEventListener('dblclick', function (event) {
-            console.log(event.target)
+            studentName.value = event.target.innerText;
+            studentName.focus();
+            studentName.select();
+            this.remove();
+            reassignIds();
+            counter--;
         })
         table.appendChild(tableRow)
         studentName.value = null;
         counter++;
+    }
+}
+
+function reassignIds() {
+    let trNodeCollection = document.getElementsByTagName('tr');
+
+    for (let i = 0; i < trNodeCollection.length; i++) {
+        trNode.id = `tableRow1${i}`
     }
 }
 

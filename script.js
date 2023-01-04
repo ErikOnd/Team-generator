@@ -40,7 +40,9 @@ function addRandom() {
         while (selectedStudentsArr.includes(student)) {
             student = studentArr[Math.floor(Math.random() * studentArr.length)];
         }
+        console.log(student)
         selectedStudentsArr.push(student);
+        student.selectedPos = selectedStudentsArr.indexOf(student);
         let wListStudent = document.getElementById(`tableRow${student.id}`);
         wListStudent.remove();
         let studentNode = document.createElement('div');
@@ -89,12 +91,14 @@ function addStundent(studentBubbleName) {
         tableRow.id = `tableRow${studentBubbleName.id}`
         table.appendChild(tableRow)
         studentName.value = null;
+        selectedStudentsArr.splice(studentBubbleName.selectedPos, 1);
     }
     else if (studentName.value) {
         studentArr.push({
             id: counter,
             name: studentName.value,
-            group: 0
+            group: 0,
+            selectedPos: 0
         })
         let tableRow = document.createElement('tr')
         tableRow.innerHTML = `<td>${studentName.value}</td>`;

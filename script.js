@@ -116,14 +116,6 @@ function addStundent(studentBubbleName) {
     }
 }
 
-function reassignIds() {
-    let trNodeCollection = document.getElementsByTagName('tr');
-
-    for (let i = 0; i < trNodeCollection.length; i++) {
-        trNode.id = `tableRow1${i}`
-    }
-}
-
 function createTable() {
     let studentTables = document.createElement('div');
     studentTables.classList.add('student-tables');
@@ -140,7 +132,6 @@ function createTable() {
 
 }
 
-
 function createTeams() {
     if (numberOfTeams.value) {
         if (document.getElementsByClassName('group-number').length > 0) {
@@ -155,7 +146,6 @@ function createTeams() {
             createTable()
         }
     }
-
 }
 
 

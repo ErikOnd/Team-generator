@@ -87,14 +87,6 @@ function addStundent(studentBubbleName) {
         let tableRow = document.createElement('tr')
         tableRow.innerHTML = `<td>${studentBubbleName.innerText}</td>`;
         tableRow.id = `tableRow${studentBubbleName.id}`
-        tableRow.addEventListener('dblclick', function (event) {
-            studentName.value = event.target.innerText;
-            studentName.focus();
-            studentName.select();
-            this.remove();
-            reassignIds();
-            counter--;
-        })
         table.appendChild(tableRow)
         studentName.value = null;
     }
@@ -107,14 +99,6 @@ function addStundent(studentBubbleName) {
         let tableRow = document.createElement('tr')
         tableRow.innerHTML = `<td>${studentName.value}</td>`;
         tableRow.id = `tableRow${counter}`
-        tableRow.addEventListener('dblclick', function (event) {
-            studentName.value = event.target.innerText;
-            studentName.focus();
-            studentName.select();
-            this.remove();
-            reassignIds();
-            counter--;
-        })
         table.appendChild(tableRow)
         studentName.value = null;
         counter++;

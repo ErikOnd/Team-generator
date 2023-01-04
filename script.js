@@ -92,6 +92,9 @@ function addStundent(studentBubbleName) {
         table.appendChild(tableRow)
         studentName.value = null;
         selectedStudentsArr.splice(studentBubbleName.selectedPos, 1);
+        if (document.getElementsByTagName('tr').length = studentArr.length) {
+            selectedStudentsArr = [];
+        }
     }
     else if (studentName.value) {
         studentArr.push({

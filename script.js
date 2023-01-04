@@ -1,13 +1,13 @@
-let addStudentBtn = document.getElementById('addStudent');
-let createTeamsBtn = document.getElementById('createTeams');
-let table = document.getElementsByTagName('tbody')[0];
-let studentName = document.getElementById('studnetName');
-let studentInputField = document.getElementById('studnetName');
-let generatedTables = document.getElementsByClassName('generated-tables')[0];
-let numberOfTeams = document.getElementById('teamCount');
-let addRandomBtn = document.getElementById('addRandom');
-let addAllBtn = document.getElementById('addAll');
-let studentArr = [];
+const addStudentBtn = document.getElementById('addStudent');
+const createTeamsBtn = document.getElementById('createTeams');
+const table = document.getElementsByTagName('tbody')[0];
+const studentName = document.getElementById('studnetName');
+const studentInputField = document.getElementById('studnetName');
+const generatedTables = document.getElementsByClassName('generated-tables')[0];
+const numberOfTeams = document.getElementById('teamCount');
+const addRandomBtn = document.getElementById('addRandom');
+const addAllBtn = document.getElementById('addAll');
+const studentArr = [];
 let counter = 0;
 
 
@@ -78,17 +78,23 @@ function addAll() {
 
 
 function addStudentToTable(studentNode) {
-    const maxSize = Math.ceil(studentArr.length / numberOfTeams.value);
-    let teamNumber = Math.floor(Math.random() * numberOfTeams.value);
-    let studentTable = document.getElementsByClassName('lower')[teamNumber];
-    let teamSize = studentTable.childElementCount;
-    while (maxSize < teamSize) {
-        teamNumber = Math.floor(Math.random() * numberOfTeams.value);
-        studentTable = document.getElementsByClassName('lower')[teamNumber];
-        teamSize = studentTable.childElementCount;
+    let studentTables = document.getElementsByClassName('lower');
+    let smallestTeams = [];
+
+    let smallestTeamSize = studentTables[0].childElementCount;
+    for (const studentTable of studentTables) {
+        if (studentTable.childElementCount < smallestTeamSize) {
+            smallestTeamSize = studentTable.childElementCount;
+        }
     }
 
-    studentTable.appendChild(studentNode);
+    for (const team of studentTables) {
+        if (team.childElementCount === smallestTeamSize) {
+            smallestTeams.push(team)
+        }
+    }
+    let teamNumber = Math.floor(Math.random() * smallestTeams.length);
+    smallestTeams[teamNumber].appendChild(studentNode)
 }
 
 function addStundent(studentBubbleName) {

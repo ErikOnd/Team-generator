@@ -7,31 +7,37 @@ const generatedTables = document.getElementsByClassName('generated-tables')[0];
 const numberOfTeams = document.getElementById('teamCount');
 const addRandomBtn = document.getElementById('addRandom');
 const addAllBtn = document.getElementById('addAll');
+const reloadBtn = document.getElementsByClassName('reload-btn')[0]
 const studentArr = [];
 let counter = 0;
 
+reloadBtn.addEventListener('click', function () {
+    if (confirm('Are you sure you want to reload everyting? All the names will be lost')) {
+        document.location.reload()
+    }
+});
 
 studentInputField.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         addStundent();
     }
-})
+});
 
 addStudentBtn.addEventListener('click', function () {
     addStundent();
-})
+});
 
 createTeamsBtn.addEventListener('click', function () {
     createTeams();
-})
+});
 
 addRandomBtn.addEventListener('click', function () {
     addRandom();
-})
+});
 
 addAllBtn.addEventListener('click', function () {
     addAll();
-})
+});
 
 function addRandom() {
     let counterUnselected = 0;
@@ -50,9 +56,8 @@ function addRandom() {
         let wListStudent = document.getElementById(`${student.id}_tableRow`);
         wListStudent.remove();
         let studentNode = document.createElement('div');
-        studentNode.addEventListener('dblclick', function (event) {
-            let student = this;
-            addStundent(student);
+        studentNode.addEventListener('dblclick', function () {
+            addStundent(this);
             this.remove();
         })
         studentNode.classList.add('student-bubble');
@@ -98,6 +103,28 @@ function addStudentToTable(studentNode) {
     smallestTeams[teamNumber].appendChild(studentNode);
 }
 
+
+function addAllStudents() {
+    for (const student of studentArr) {
+        if (student.deleted === false && student.selected === true) {
+            let tableRow = document.createElement('tr');
+            tableRow.addEventListener('dblclick', function () {
+                studentArr[(parseInt(this.id))].deleted = true;
+                studentName.value = this.innerText;
+                studentName.focus();
+                this.remove();
+            })
+            tableRow.innerHTML = `<td>${student.name}</td>`;
+            tableRow.id = `${student.id}_tableRow`;
+            table.appendChild(tableRow);
+            studentName.value = null;
+            student.selected = false;
+            student.group = 0;
+        }
+    }
+}
+
+
 function addStundent(studentBubbleName) {
     if (studentBubbleName) {
         let tableRow = document.createElement('tr');
@@ -112,6 +139,7 @@ function addStundent(studentBubbleName) {
         table.appendChild(tableRow);
         studentName.value = null;
         studentArr[studentBubbleName.id].selected = false;
+        studentArr[studentBubbleName.id].group = 0;
     }
     else if (studentName.value) {
         studentArr.push({
@@ -157,7 +185,8 @@ function createTeams() {
         if (document.getElementsByClassName('group-number').length > 0) {
             if (confirm("You have already created teams, do you wan't to delete them and create new ones?")) {
                 generatedTables.innerHTML = '';
-                createTable()
+                createTable();
+                addAllStudents();
             } else {
                 return;
             }
@@ -168,3 +197,5 @@ function createTeams() {
     }
 }
 
+
+//drag and drop

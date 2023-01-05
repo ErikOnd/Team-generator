@@ -144,7 +144,6 @@ button:hover {
     gap: 10px;
     margin-left: 40px;
     margin-bottom: 40px;
-    white-space: nowrap;
     width: 25%;
 }
 
@@ -162,6 +161,48 @@ button:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     cursor: pointer;
 }
+
+.reload-btn {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    top: 100;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.4s ease-in-out;
+    background: black;
+}
+
+.icon {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.reload-btn .icon {
+    width: 24px;
+    height: 24px;
+    transition: all 0.4s ease-in-out;
+}
+
+.reload-btn:hover .icon {
+    transform: rotate(360deg) scale(1.2);
+}
+
+
+
+
+
+
 
 @media (max-width: 1150px) {
     .container {

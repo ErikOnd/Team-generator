@@ -13,24 +13,24 @@ let counter = 0;
 
 studentInputField.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
-        addStundent()
+        addStundent();
     }
 })
 
 addStudentBtn.addEventListener('click', function () {
-    addStundent()
+    addStundent();
 })
 
 createTeamsBtn.addEventListener('click', function () {
-    createTeams()
+    createTeams();
 })
 
 addRandomBtn.addEventListener('click', function () {
-    addRandom()
+    addRandom();
 })
 
 addAllBtn.addEventListener('click', function () {
-    addAll()
+    addAll();
 })
 
 function addRandom() {
@@ -90,16 +90,17 @@ function addStudentToTable(studentNode) {
 
     for (const team of studentTables) {
         if (team.childElementCount === smallestTeamSize) {
-            smallestTeams.push(team)
+            smallestTeams.push(team);
         }
     }
     let teamNumber = Math.floor(Math.random() * smallestTeams.length);
-    smallestTeams[teamNumber].appendChild(studentNode)
+    studentArr[studentNode.id].group = teamNumber + 1;
+    smallestTeams[teamNumber].appendChild(studentNode);
 }
 
 function addStundent(studentBubbleName) {
     if (studentBubbleName) {
-        let tableRow = document.createElement('tr')
+        let tableRow = document.createElement('tr');
         tableRow.addEventListener('dblclick', function () {
             if (confirm('Do you want to delete this student?')) {
                 studentArr[(parseInt(this.id))].deleted = true;
@@ -107,8 +108,8 @@ function addStundent(studentBubbleName) {
             }
         })
         tableRow.innerHTML = `<td>${studentBubbleName.innerText}</td>`;
-        tableRow.id = `${studentBubbleName.id}_tableRow`
-        table.appendChild(tableRow)
+        tableRow.id = `${studentBubbleName.id}_tableRow`;
+        table.appendChild(tableRow);
         studentName.value = null;
         studentArr[studentBubbleName.id].selected = false;
     }
@@ -119,8 +120,8 @@ function addStundent(studentBubbleName) {
             group: 0,
             selected: false,
             deleted: false,
-        })
-        let tableRow = document.createElement('tr')
+        });
+        let tableRow = document.createElement('tr');
         tableRow.addEventListener('dblclick', function () {
             if (confirm('Do you want to delete this student?')) {
                 studentArr[(parseInt(this.id))].deleted = true;
@@ -128,8 +129,8 @@ function addStundent(studentBubbleName) {
             }
         })
         tableRow.innerHTML = `<td>${studentName.value}</td>`;
-        tableRow.id = `${counter}_tableRow`
-        table.appendChild(tableRow)
+        tableRow.id = `${counter}_tableRow`;
+        table.appendChild(tableRow);
         studentName.value = null;
         counter++;
     }
@@ -158,29 +159,12 @@ function createTeams() {
                 generatedTables.innerHTML = '';
                 createTable()
             } else {
-                return
+                return;
             }
         }
         else {
-            createTable()
+            createTable();
         }
     }
 }
 
-
-
-function formatArray() {
-    //formate completely new array
-    //only allow deleting studets when they are all in the waiting list?
-}
-
-
-/*
-  tableRow.addEventListener('dblclick', function () {
-            if (confirm('Do you want to delete this student?')) {
-                studentArr.splice(parseInt(this.id))
-                this.remove();
-            }
-        })
-
-*/

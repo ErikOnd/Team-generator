@@ -61,8 +61,13 @@ function addRandom() {
             this.remove();
         })
         studentNode.classList.add('student-bubble');
+        studentNode.draggable = true;
         studentNode.id = student.id;
         studentNode.innerText = student.name;
+        studentNode.addEventListener('dragstart', function (event) {
+            event.dataTransfer.setData('text/plain', event.target.id);
+        });
+        //hier weiter machen 
         addStudentToTable(studentNode);
     }
 }
@@ -171,6 +176,16 @@ function createTable() {
     for (let i = 0; i < numberOfTeams.value; i++) {
         let studentGroup = document.createElement('div');
         studentGroup.classList.add('lower', 'content');
+        studentGroup.addEventListener('dragover', function (event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'move';
+        });
+        studentGroup.addEventListener('drop', function (event) {
+            event.preventDefault;
+            const readID = event.dataTransfer.getData('text/plain');
+            const draggedElement = document.getElementById(readID);
+            event.target.appendChild(draggedElement);
+        })
         studentTables.appendChild(studentGroup);
         let groupHeader = document.createElement('div');
         groupHeader.innerHTML = i + 1;
@@ -196,6 +211,3 @@ function createTeams() {
         }
     }
 }
-
-
-//drag and drop

@@ -36,7 +36,7 @@ addAllBtn.addEventListener('click', function () {
 function addRandom() {
     let counterUnselected = 0;
     for (let i = 0; i < studentArr.length; i++) {
-        if (studentArr[i].selected === false) {
+        if (studentArr[i].selected === false && studentArr[i].deleted === false) {
             counterUnselected++;
         }
     }
@@ -102,10 +102,10 @@ function addStundent(studentBubbleName) {
     if (studentBubbleName) {
         let tableRow = document.createElement('tr');
         tableRow.addEventListener('dblclick', function () {
-            if (confirm('Do you want to delete this student?')) {
-                studentArr[(parseInt(this.id))].deleted = true;
-                this.remove();
-            }
+            studentArr[(parseInt(this.id))].deleted = true;
+            studentName.value = this.innerText;
+            studentName.focus();
+            this.remove();
         })
         tableRow.innerHTML = `<td>${studentBubbleName.innerText}</td>`;
         tableRow.id = `${studentBubbleName.id}_tableRow`;
@@ -123,10 +123,10 @@ function addStundent(studentBubbleName) {
         });
         let tableRow = document.createElement('tr');
         tableRow.addEventListener('dblclick', function () {
-            if (confirm('Do you want to delete this student?')) {
-                studentArr[(parseInt(this.id))].deleted = true;
-                this.remove();
-            }
+            studentArr[(parseInt(this.id))].deleted = true;
+            studentName.value = this.innerText;
+            studentName.focus();
+            this.remove();
         })
         tableRow.innerHTML = `<td>${studentName.value}</td>`;
         tableRow.id = `${counter}_tableRow`;

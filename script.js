@@ -42,12 +42,12 @@ function addRandom() {
     }
     if (counterUnselected > 0 && document.getElementsByClassName('lower')[0] != null) {
         student = studentArr[Math.floor(Math.random() * studentArr.length)];
-        while (student.selected === true) {
+        while (student.selected === true || student.deleted === true) {
             student = studentArr[Math.floor(Math.random() * studentArr.length)];
         }
-
+        console.log(student)
         studentArr[student.id].selected = true;
-        let wListStudent = document.getElementById(`tableRow${student.id}`);
+        let wListStudent = document.getElementById(`${student.id}_tableRow`);
         wListStudent.remove();
         let studentNode = document.createElement('div');
         studentNode.addEventListener('dblclick', function (event) {
@@ -65,7 +65,7 @@ function addRandom() {
 function addAll() {
     let counterUnselected = 0;
     for (let i = 0; i < studentArr.length; i++) {
-        if (studentArr[i].selected === false) {
+        if (studentArr[i].selected === false && studentArr[i].deleted === false) {
             counterUnselected++;
         }
     }
@@ -100,8 +100,14 @@ function addStudentToTable(studentNode) {
 function addStundent(studentBubbleName) {
     if (studentBubbleName) {
         let tableRow = document.createElement('tr')
+        tableRow.addEventListener('dblclick', function () {
+            if (confirm('Do you want to delete this student?')) {
+                studentArr[(parseInt(this.id))].deleted = true;
+                this.remove();
+            }
+        })
         tableRow.innerHTML = `<td>${studentBubbleName.innerText}</td>`;
-        tableRow.id = `tableRow${studentBubbleName.id}`
+        tableRow.id = `${studentBubbleName.id}_tableRow`
         table.appendChild(tableRow)
         studentName.value = null;
         studentArr[studentBubbleName.id].selected = false;
@@ -111,11 +117,18 @@ function addStundent(studentBubbleName) {
             id: counter,
             name: studentName.value,
             group: 0,
-            selected: false
+            selected: false,
+            deleted: false,
         })
         let tableRow = document.createElement('tr')
+        tableRow.addEventListener('dblclick', function () {
+            if (confirm('Do you want to delete this student?')) {
+                studentArr[(parseInt(this.id))].deleted = true;
+                this.remove();
+            }
+        })
         tableRow.innerHTML = `<td>${studentName.value}</td>`;
-        tableRow.id = `tableRow${counter}`
+        tableRow.id = `${counter}_tableRow`
         table.appendChild(tableRow)
         studentName.value = null;
         counter++;
@@ -156,4 +169,18 @@ function createTeams() {
 
 
 
-//double click can edit student 
+function formatArray() {
+    //formate completely new array
+    //only allow deleting studets when they are all in the waiting list?
+}
+
+
+/*
+  tableRow.addEventListener('dblclick', function () {
+            if (confirm('Do you want to delete this student?')) {
+                studentArr.splice(parseInt(this.id))
+                this.remove();
+            }
+        })
+
+*/

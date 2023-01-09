@@ -5,6 +5,7 @@ const studentName = document.getElementById('studnetName');
 const studentInputField = document.getElementById('studnetName');
 const generatedTables = document.getElementsByClassName('generated-tables')[0];
 const numberOfTeams = document.getElementById('teamCount');
+const cpyBtn = document.getElementsByClassName('cpy-btn')[0];
 const addRandomBtn = document.getElementById('addRandom');
 const addAllBtn = document.getElementById('addAll');
 const reloadBtn = document.getElementsByClassName('reload-btn')[0]
@@ -176,6 +177,7 @@ function createTable() {
     for (let i = 0; i < numberOfTeams.value; i++) {
         let studentGroup = document.createElement('div');
         studentGroup.classList.add('lower', 'content');
+        studentGroup.id = `${i + 1}_table`
         studentGroup.addEventListener('dragover', function (event) {
             event.preventDefault();
             event.dataTransfer.dropEffect = 'move';
@@ -210,4 +212,24 @@ function createTeams() {
             createTable();
         }
     }
+}
+
+
+function myFunction() {
+    let studentTables = document.getElementsByClassName('lower');
+    let counter = 1;
+    let copyText = '';
+    for (const studentTable of studentTables) {
+        copyText += `Team ${counter}: `;
+        for (let i = 1; i < studentTable.children.length; i++) {
+            copyText += `${studentTable.children[i].innerHTML}`
+            if (i !== studentTable.children.length - 1) {
+                copyText += ', '
+            }
+        }
+        copyText += '\n';
+        counter++;
+    }
+    console.log(copyText)
+    navigator.clipboard.writeText(copyText);
 }

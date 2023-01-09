@@ -165,7 +165,7 @@ button:hover {
 .reload-btn {
     position: absolute;
     right: 20px;
-    bottom: 20px;
+    bottom: 90px;
     top: 100;
     width: 60px;
     height: 60px;
@@ -198,6 +198,11 @@ button:hover {
     transform: rotate(360deg) scale(1.2);
 }
 
+.cpy-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
 
 
 
